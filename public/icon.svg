@@ -1,7 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Arkane">
-  <rect width="512" height="512" rx="112" fill="#080a08"/>
-  <path d="M256 60 414 128v118c0 106-61 172-158 206C159 418 98 352 98 246V128L256 60Z" fill="#111b15" stroke="#d2b463" stroke-width="14"/>
-  <path d="M256 116 351 158v83c0 72-36 118-95 142-59-24-95-70-95-142v-83l95-42Z" fill="#17251c" stroke="#6fe3a6" stroke-width="8"/>
-  <path d="M256 155 314 344h-39l-10-39h-55l-10 39h-39l58-189h37Zm-36 114h36l-18-70-18 70Z" fill="#efe5c1"/>
-  <path d="M156 390h200" stroke="#d2b463" stroke-width="10" stroke-linecap="round"/>
+  <defs>
+    <linearGradient id="bg" x1="70" y1="30" x2="440" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#172316"/>
+      <stop offset="0.55" stop-color="#080b08"/>
+      <stop offset="1" stop-color="#030503"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="116" y1="42" x2="402" y2="442" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#ffe58d"/>
+      <stop offset="0.5" stop-color="#e9b84d"/>
+      <stop offset="1" stop-color="#a97822"/>
+    </linearGradient>
+  </defs>
+  <rect width="512" height="512" rx="116" fill="url(#bg)"/>
+  <path d="M83 92h346M96 420h320M92 88v334M420 92v328" stroke="#e8c46b" stroke-opacity=".18" stroke-width="6" stroke-linecap="round"/>
+  <path d="M256 58 402 121v119c0 101-55 168-146 210-91-42-146-109-146-210V121L256 58Z" fill="#101a13" stroke="url(#gold)" stroke-width="18" stroke-linejoin="round"/>
+  <path d="M256 116 343 154v79c0 68-32 114-87 143-55-29-87-75-87-143v-79l87-38Z" fill="#17261b" stroke="#63d99a" stroke-width="9" stroke-linejoin="round" stroke-opacity=".85"/>
+  <path d="M197 263 241 308 319 202" stroke="#f7f0d0" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M184 384h144" stroke="#e8c46b" stroke-width="13" stroke-linecap="round" stroke-opacity=".72"/>
 </svg>

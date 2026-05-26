@@ -70,17 +70,17 @@ export function Header({
   }
 
   return (
-    <header className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+    <header className="vault-plate rounded-[1.5rem] bg-black/[0.18] p-3 shadow-inset ring-1 ring-arkane-line sm:flex sm:items-center sm:justify-between">
       <div className="flex min-w-0 items-center gap-3">
         <LogoMark className="h-11 w-11 rounded-2xl" />
         <div className="min-w-0">
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-arkane-green">{t.headerEyebrow}</p>
-          <h1 className="truncate font-serif text-2xl font-semibold text-arkane-text">
+          <h1 className="truncate font-serif text-3xl text-arkane-text sm:text-2xl">
             {connection?.repo ?? t.noRepository}
           </h1>
         </div>
       </div>
-      <div className="flex items-center justify-between gap-2 sm:justify-end">
+      <div className="relative mt-3 flex items-center justify-between gap-2 sm:mt-0 sm:justify-end">
         <StatusPill language={language} online={online} syncState={syncState} />
         <div className="flex items-center gap-2">
           <LanguageToggle compact language={language} labels={languageLabels} onToggle={onToggleLanguage} />
@@ -88,16 +88,16 @@ export function Header({
             type="button"
             onClick={syncNow}
             aria-label={t.syncNow}
-            className="tap-target hidden rounded-xl bg-white/[0.045] px-3 text-arkane-muted shadow-inset ring-1 ring-arkane-line transition-[transform,background-color,color] duration-150 ease-arkane active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text sm:inline-flex sm:items-center sm:gap-2"
+            className="tap-target interactive-surface inline-flex items-center gap-2 rounded-xl bg-white/[0.045] px-3 text-arkane-muted shadow-inset ring-1 ring-arkane-line active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text"
           >
             <RefreshCw className={cn("h-4 w-4", syncing && "animate-spin")} />
-            <span className="text-sm">{t.sync}</span>
+            <span className="hidden text-sm min-[430px]:inline">{t.sync}</span>
           </button>
           <button
             type="button"
             onClick={() => void onLock()}
             aria-label={t.lockVault}
-            className="tap-target grid place-items-center rounded-xl bg-white/[0.045] text-arkane-muted shadow-inset ring-1 ring-arkane-line transition-[transform,background-color,color] duration-150 ease-arkane active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text"
+            className="tap-target interactive-surface grid place-items-center rounded-xl bg-white/[0.045] text-arkane-muted shadow-inset ring-1 ring-arkane-line active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text"
           >
             <LockKeyhole className="h-5 w-5" />
           </button>
@@ -105,7 +105,7 @@ export function Header({
             type="button"
             onClick={() => void disconnect()}
             aria-label={t.disconnect}
-            className="tap-target grid place-items-center rounded-xl bg-white/[0.045] text-arkane-muted shadow-inset ring-1 ring-arkane-line transition-[transform,background-color,color] duration-150 ease-arkane active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text"
+            className="tap-target interactive-surface grid place-items-center rounded-xl bg-white/[0.045] text-arkane-muted shadow-inset ring-1 ring-arkane-line active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text"
           >
             <LogOut className="h-5 w-5" />
           </button>
@@ -153,19 +153,19 @@ export function StatusStrip({ copy: t, vault, expiringCount }: { copy: Workspace
 
 function Metric({ label, value, icon: Icon, alert = false }: { label: string; value: number; icon: LucideIcon; alert?: boolean }) {
   return (
-    <div className="rounded-2xl bg-white/[0.04] p-3 shadow-inset ring-1 ring-arkane-line">
+    <div className="interactive-surface rounded-[1.35rem] bg-white/[0.045] p-4 shadow-inset ring-1 ring-arkane-line">
       <div className="mb-2 flex items-center justify-between gap-2">
         <span className="truncate text-sm text-arkane-muted">{label}</span>
         <Icon className={cn("h-4 w-4 shrink-0", alert ? "text-arkane-amber" : "text-arkane-faint")} />
       </div>
-      <strong className="tabular font-serif text-3xl font-semibold text-arkane-text">{value}</strong>
+      <strong className="tabular font-serif text-4xl text-arkane-text">{value}</strong>
     </div>
   );
 }
 
 export function ExpiryPanel({ copy: t, language, items }: { copy: WorkspaceCopy; language: AppLanguage; items: VaultItem[] }) {
   return (
-    <aside className="rounded-[1.5rem] bg-arkane-deck/95 p-4 shadow-inset ring-1 ring-arkane-line">
+    <aside className="vault-plate rounded-[1.5rem] bg-arkane-deck/95 p-4 shadow-inset ring-1 ring-arkane-line">
       <div className="mb-3 flex items-center gap-2">
         <BellRing className="h-5 w-5 text-arkane-amber" />
         <h2 className="font-serif text-xl text-arkane-text">{t.expiryTitle}</h2>
@@ -173,7 +173,7 @@ export function ExpiryPanel({ copy: t, language, items }: { copy: WorkspaceCopy;
       {items.length ? (
         <div className="space-y-2">
           {items.slice(0, 5).map((item) => (
-            <div key={item.id} className="rounded-2xl bg-white/[0.04] p-3 shadow-inset ring-1 ring-arkane-line">
+            <div key={item.id} className="interactive-surface rounded-2xl bg-white/[0.04] p-3 shadow-inset ring-1 ring-arkane-line">
               <p className="truncate text-sm text-arkane-text">{item.title}</p>
               <p className="text-xs text-arkane-amber">{formatShortDate(item.expiresAt, language === "zh" ? "zh-CN" : undefined)}</p>
             </div>
@@ -200,7 +200,7 @@ export function ConnectionPanel({
   syncState: SyncState;
 }) {
   return (
-    <aside className="rounded-[1.5rem] bg-arkane-deck/95 p-4 shadow-inset ring-1 ring-arkane-line">
+    <aside className="vault-plate rounded-[1.5rem] bg-arkane-deck/95 p-4 shadow-inset ring-1 ring-arkane-line">
       <div className="mb-3 flex items-center gap-2">
         <Github className="h-5 w-5 text-arkane-green" />
         <h2 className="font-serif text-xl text-arkane-text">{t.connectionTitle}</h2>
@@ -236,7 +236,7 @@ export function SentryCount(vault: VaultData) {
 
 export function MiniStatus({ icon: Icon, label, value }: { icon: LucideIcon; label: string; value: string }) {
   return (
-    <div className="rounded-2xl bg-white/[0.04] p-3 shadow-inset ring-1 ring-arkane-line">
+    <div className="interactive-surface rounded-2xl bg-white/[0.04] p-3 shadow-inset ring-1 ring-arkane-line">
       <Icon className="mb-2 h-4 w-4 text-arkane-green" />
       <p className="text-xs uppercase tracking-[0.12em] text-arkane-faint">{label}</p>
       <p className="truncate text-sm text-arkane-text">{value}</p>

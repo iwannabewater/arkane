@@ -24,6 +24,22 @@
 }
 
 @font-face {
+  font-family: "LXGW WenKai UI 101";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-101.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 106";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-106.woff2") format("woff2");
+}
+
+@font-face {
   font-family: "LXGW WenKai UI 109";
   font-style: normal;
   font-display: swap;
@@ -112,11 +128,91 @@
 }
 
 @font-face {
+  font-family: "Noto Serif SC UI 101";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-101-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 106";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-106-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 109";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-109-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 110";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-110-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 111";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-111-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 112";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-112-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 113";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-113-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 114";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-114-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 115";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-115-400-normal.woff2") format("woff2");
+}
+
+@font-face {
   font-family: "Noto Serif SC UI 116";
   font-style: normal;
   font-display: swap;
   font-weight: 400;
   src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-116-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 117";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-117-400-normal.woff2") format("woff2");
 }
 
 @font-face {
@@ -147,10 +243,15 @@
   -moz-osx-font-smoothing: grayscale;
   --arkane-font-cn: "LXGW WenKai UI 119", "LXGW WenKai UI 118", "LXGW WenKai UI 117", "LXGW WenKai UI 116",
     "LXGW WenKai UI 115", "LXGW WenKai UI 114", "LXGW WenKai UI 113", "LXGW WenKai UI 112",
-    "LXGW WenKai UI 111", "LXGW WenKai UI 110", "LXGW WenKai UI 109";
-  --arkane-font-serif-cn: "Noto Serif SC UI 119", "Noto Serif SC UI 118", "Noto Serif SC UI 116", var(--arkane-font-cn);
-  --arkane-font-sans: "Ysabeau Office Variable", var(--arkane-font-cn), sans-serif;
-  --arkane-font-serif: "Charter", var(--arkane-font-serif-cn), serif;
+    "LXGW WenKai UI 111", "LXGW WenKai UI 110", "LXGW WenKai UI 109", "LXGW WenKai UI 106",
+    "LXGW WenKai UI 101";
+  --arkane-font-serif-cn: "Noto Serif SC UI 119", "Noto Serif SC UI 118", "Noto Serif SC UI 117",
+    "Noto Serif SC UI 116", "Noto Serif SC UI 115", "Noto Serif SC UI 114", "Noto Serif SC UI 113",
+    "Noto Serif SC UI 112", "Noto Serif SC UI 111", "Noto Serif SC UI 110", "Noto Serif SC UI 109",
+    "Noto Serif SC UI 106", "Noto Serif SC UI 101";
+  --arkane-font-sans: "Ysabeau Office Variable", var(--arkane-font-cn);
+  --arkane-font-serif: "Charter", var(--arkane-font-serif-cn);
+  --arkane-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 html,
@@ -172,11 +273,25 @@ body {
   margin: 0;
   overflow: hidden;
   background:
-    linear-gradient(115deg, oklch(10% 0.018 150) 0%, transparent 42%),
-    linear-gradient(180deg, oklch(7% 0.012 135), oklch(5.5% 0.012 120));
+    linear-gradient(115deg, oklch(12% 0.018 140) 0%, transparent 46%),
+    linear-gradient(180deg, oklch(8% 0.014 120), oklch(4.5% 0.012 120));
   color: oklch(92% 0.017 100);
   font-family: var(--arkane-font-sans);
   touch-action: manipulation;
+}
+
+html[lang="zh-CN"] body {
+  font-family: var(--arkane-font-sans);
+}
+
+html[lang="zh-CN"] .font-serif {
+  font-family: var(--arkane-font-serif);
+  font-weight: 400;
+}
+
+html[lang="zh-CN"] .font-sans,
+html[lang="zh-CN"] .font-mono {
+  font-family: var(--arkane-font-sans);
 }
 
 button,
@@ -219,9 +334,9 @@ button {
 
 .surface-grid {
   background-image:
-    linear-gradient(90deg, oklch(100% 0 0 / 0.052) 1px, transparent 1px),
-    linear-gradient(0deg, oklch(100% 0 0 / 0.038) 1px, transparent 1px);
-  background-size: 28px 28px;
+    linear-gradient(90deg, oklch(100% 0 0 / 0.048) 1px, transparent 1px),
+    linear-gradient(0deg, oklch(100% 0 0 / 0.034) 1px, transparent 1px);
+  background-size: 30px 30px;
 }
 
 .vault-plate {
@@ -235,27 +350,27 @@ button {
   pointer-events: none;
   content: "";
   background:
-    linear-gradient(90deg, transparent, oklch(78% 0.105 84 / 0.09), transparent),
-    repeating-linear-gradient(90deg, oklch(100% 0 0 / 0.04) 0 1px, transparent 1px 18px);
-  opacity: 0.42;
+    linear-gradient(90deg, transparent, oklch(78% 0.105 84 / 0.11), transparent),
+    repeating-linear-gradient(90deg, oklch(100% 0 0 / 0.038) 0 1px, transparent 1px 20px);
+  opacity: 0.46;
   mask-image: linear-gradient(180deg, black, transparent 72%);
 }
 
 .field-control {
   min-height: 2.75rem;
   width: 100%;
-  border-radius: 0.875rem;
-  background: oklch(0% 0 0 / 0.24);
+  border-radius: 1rem;
+  background: oklch(0% 0 0 / 0.28);
   padding: 0.75rem 1rem;
   color: oklch(92% 0.017 100);
   outline: none;
   box-shadow:
     inset 0 1px 0 oklch(100% 0 0 / 0.035),
-    0 0 0 1px oklch(100% 0 0 / 0.08);
+    0 0 0 1px oklch(100% 0 0 / 0.09);
   transition:
-    background-color 150ms cubic-bezier(0.16, 1, 0.3, 1),
-    box-shadow 150ms cubic-bezier(0.16, 1, 0.3, 1),
-    transform 150ms cubic-bezier(0.16, 1, 0.3, 1);
+    background-color 180ms var(--arkane-ease-out),
+    box-shadow 180ms var(--arkane-ease-out),
+    transform 180ms var(--arkane-ease-out);
 }
 
 .field-control:focus-visible {
@@ -280,6 +395,82 @@ button {
 .tap-target {
   min-width: 44px;
   min-height: 44px;
+}
+
+.hero-title {
+  font-size: 3.45rem;
+  line-height: 0.94;
+}
+
+html[lang="zh-CN"] .hero-title {
+  font-size: 3.2rem;
+  line-height: 1.06;
+}
+
+.hero-ambient {
+  background:
+    linear-gradient(112deg, oklch(78% 0.12 84 / 0.16), transparent 34%),
+    linear-gradient(135deg, oklch(100% 0 0 / 0.075) 0 1px, transparent 1px 16px),
+    linear-gradient(90deg, transparent 0 62%, oklch(74% 0.13 155 / 0.08) 62% 100%),
+    linear-gradient(180deg, oklch(13% 0.02 132 / 0.98), oklch(6.5% 0.014 125 / 0.96));
+}
+
+.interactive-surface {
+  transition:
+    transform 180ms var(--arkane-ease-out),
+    background-color 180ms var(--arkane-ease-out),
+    border-color 180ms var(--arkane-ease-out),
+    box-shadow 180ms var(--arkane-ease-out);
+}
+
+@media (hover: hover) {
+  .interactive-surface:hover {
+    transform: translateY(-2px);
+  }
+}
+
+@media (min-width: 640px) {
+  .hero-title {
+    font-size: 4.45rem;
+  }
+
+  html[lang="zh-CN"] .hero-title {
+    font-size: 4.15rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .hero-title {
+    font-size: 5.75rem;
+  }
+
+  html[lang="zh-CN"] .hero-title {
+    font-size: 5.1rem;
+  }
+}
+
+@media (min-width: 1280px) {
+  .hero-title {
+    font-size: 6.2rem;
+  }
+
+  html[lang="zh-CN"] .hero-title {
+    font-size: 5.85rem;
+  }
+}
+
+.vault-sigil {
+  animation: sigil-float 7s var(--arkane-ease-out) infinite;
+}
+
+@keyframes sigil-float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(0.7deg);
+  }
 }
 
 .text-balance {

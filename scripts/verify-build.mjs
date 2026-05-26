@@ -3,8 +3,9 @@ import { join } from "node:path";
 
 const DIST = new URL("../dist/", import.meta.url).pathname;
 // The design system intentionally ships curated CJK and Latin font subsets.
-const MAX_DIST_BYTES = 1700 * 1024;
-const MAX_FONT_BYTES = 1100 * 1024;
+// The CJK chain covers every shipped Chinese UI glyph to avoid mixed fallback rendering.
+const MAX_DIST_BYTES = 1850 * 1024;
+const MAX_FONT_BYTES = 1400 * 1024;
 
 function filesUnder(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {

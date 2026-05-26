@@ -47,8 +47,9 @@ export const copy = {
     gateway: {
       eyebrow: "Arkane secure gateway",
       title: "Arkane",
-      tagline: "A quiet encrypted vault for credentials, assets, and recovery traces.",
-      proof: "Client-side AES-GCM. Private GitHub sync. No telemetry.",
+      tagline: "A private vault for credentials, assets, and recovery traces.",
+      taglineLines: ["A private vault", "for credentials,", "assets, and recovery traces."],
+      proof: "Local encryption, private GitHub sync, and a calm workspace for the things you cannot lose.",
       signals: [
         { value: "AES-GCM", label: "client-side" },
         { value: "PWA", label: "offline shell" },
@@ -181,8 +182,9 @@ export const copy = {
     gateway: {
       eyebrow: "Arkane 安全入口",
       title: "Arkane",
-      tagline: "给凭据、资产和恢复线索使用的安静加密金库。",
-      proof: "浏览器本地 AES-GCM 加密。私有 GitHub 同步。没有遥测。",
+      tagline: "凭据、资产与恢复线索的安静加密金库。",
+      taglineLines: ["凭据、资产", "与恢复线索", "安静加密金库。"],
+      proof: "本地加密、私有 GitHub 同步，把不能丢失的东西安静收好。",
       signals: [
         { value: "AES-GCM", label: "本地加密" },
         { value: "PWA", label: "离线外壳" },

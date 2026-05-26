@@ -61,7 +61,7 @@ export function LockOverlay({
   }
 
   return (
-    <div className="fixed inset-0 z-[70] grid place-items-center bg-arkane-canvas px-4">
+    <div className="surface-grid fixed inset-0 z-[70] grid place-items-center bg-arkane-canvas px-4">
       <div className="absolute right-4 top-[calc(env(safe-area-inset-top)+14px)]">
         <LanguageToggle compact language={language} labels={languageLabels} onToggle={onToggleLanguage} />
       </div>
@@ -112,14 +112,14 @@ export function LockOverlay({
             <button
               type="button"
               onClick={onFullUnlock}
-              className="tap-target rounded-xl bg-white/[0.045] px-4 text-sm text-arkane-muted shadow-inset ring-1 ring-arkane-line transition-[transform,background-color,color] duration-150 ease-arkane active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text"
+              className="tap-target interactive-surface rounded-xl bg-white/[0.045] px-4 text-sm text-arkane-muted shadow-inset ring-1 ring-arkane-line active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text"
             >
               {t.masterPassword}
             </button>
             <button
               type="submit"
               disabled={busy || pin.length !== 6}
-              className="tap-target inline-flex items-center justify-center gap-2 rounded-xl bg-arkane-amber px-4 font-semibold text-black shadow-amber transition-[transform,opacity] duration-150 ease-arkane active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
+              className="tap-target interactive-surface inline-flex items-center justify-center gap-2 rounded-xl bg-arkane-amber px-4 font-semibold text-black shadow-amber active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
             >
               <LockKeyhole className="h-4 w-4" />
               {t.unlock}
