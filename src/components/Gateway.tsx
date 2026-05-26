@@ -1,18 +1,34 @@
 import { FormEvent, useState } from "react";
-import { Fingerprint, GitBranch as Github, KeyRound, LockKeyhole, ShieldAlert } from "lucide-react";
-import type { GitHubConnection } from "../types";
+import { Fingerprint, GitBranch as Github, KeyRound, LockKeyhole, ShieldAlert, ShieldCheck } from "lucide-react";
 import type { MasterUnlockInput } from "../hooks/useVaultEngine";
+import { copy, type AppLanguage, localizeError } from "../lib/i18n";
+import type { GitHubConnection } from "../types";
+import { LanguageToggle } from "./LanguageToggle";
 import { LogoMark } from "./LogoMark";
 
 interface GatewayProps {
+  copy: (typeof copy)[AppLanguage]["gateway"];
+  language: AppLanguage;
+  languageLabels: (typeof copy)[AppLanguage]["language"];
   storedConnection: GitHubConnection | null;
   hasQuickPin: boolean;
   syncMessage: string;
+  onToggleLanguage: () => void;
   onMasterUnlock: (input: MasterUnlockInput) => Promise<void>;
   onPinUnlock: (pin: string) => Promise<void>;
 }
 
-export function Gateway({ storedConnection, hasQuickPin, syncMessage, onMasterUnlock, onPinUnlock }: GatewayProps) {
+export function Gateway({
+  copy: t,
+  language,
+  languageLabels,
+  storedConnection,
+  hasQuickPin,
+  syncMessage,
+  onToggleLanguage,
+  onMasterUnlock,
+  onPinUnlock
+}: GatewayProps) {
   const [token, setToken] = useState(storedConnection?.token ?? "");
   const [repo, setRepo] = useState(storedConnection?.repo ?? "");
   const [branch, setBranch] = useState(storedConnection?.branch ?? "main");
@@ -37,7 +53,7 @@ export function Gateway({ storedConnection, hasQuickPin, syncMessage, onMasterUn
         quickPin: quickPin || undefined
       });
     } catch (nextError) {
-      setError(nextError instanceof Error ? nextError.message : "Unlock failed.");
+      setError(localizeError(nextError, "Unlock failed.", language));
     } finally {
       setBusy(false);
     }
@@ -50,7 +66,7 @@ export function Gateway({ storedConnection, hasQuickPin, syncMessage, onMasterUn
     try {
       await onPinUnlock(pinUnlock);
     } catch (nextError) {
-      setError(nextError instanceof Error ? nextError.message : "Quick PIN failed.");
+      setError(localizeError(nextError, "Quick PIN failed.", language));
     } finally {
       setBusy(false);
     }
@@ -59,65 +75,77 @@ export function Gateway({ storedConnection, hasQuickPin, syncMessage, onMasterUn
   return (
     <main
       id="main-content"
-      className="app-scroll h-full overflow-y-auto px-4 pb-10 pt-[calc(env(safe-area-inset-top)+18px)] sm:px-6 lg:px-8"
+      className="app-scroll scroll-fade h-full overflow-y-auto px-4 pb-8 pt-[calc(env(safe-area-inset-top)+14px)] sm:px-6 lg:px-8"
     >
-      <section className="mx-auto flex min-h-full w-full max-w-6xl flex-col justify-center gap-8 lg:grid lg:grid-cols-[0.9fr_1.1fr] lg:items-center">
-        <div className="space-y-7">
-          <div className="flex items-center gap-4">
-            <LogoMark />
+      <section className="mx-auto flex min-h-full w-full max-w-6xl flex-col justify-center gap-5 py-4 lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)] lg:items-center lg:gap-7">
+        <div className="flex items-center justify-between gap-3 lg:col-span-2">
+          <div className="flex items-center gap-3">
+            <LogoMark className="h-10 w-10 rounded-2xl" />
             <div>
-              <p className="font-mono text-xs uppercase tracking-[0.18em] text-arkane-green">ARKANE SECURE GATEWAY</p>
-              <h1 className="font-serif text-4xl font-semibold tracking-[-0.022em] text-arkane-text sm:text-5xl">
-                Arkane
-              </h1>
+              <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-arkane-green">{t.eyebrow}</p>
+              <h1 className="font-serif text-xl font-semibold text-arkane-text">{t.title}</h1>
             </div>
           </div>
+          <LanguageToggle language={language} labels={languageLabels} onToggle={onToggleLanguage} />
+        </div>
 
-          <div className="max-w-xl space-y-4">
-            <p className="text-balance font-serif text-2xl leading-tight tracking-[-0.012em] text-arkane-text sm:text-3xl">
-              Private vault, encrypted locally, committed to your GitHub repository.
-            </p>
-            <div className="grid grid-cols-3 gap-2 text-xs text-arkane-muted">
-              <div className="rounded-lg bg-white/[0.035] px-3 py-3 ring-1 ring-arkane-line">
-                <span className="block font-mono text-arkane-amber">AES-GCM</span>
-                <span>client-side</span>
+        <div className="space-y-5">
+          <div className="vault-plate rounded-[1.75rem] bg-arkane-deck/88 p-5 shadow-glow ring-1 ring-arkane-line sm:p-6">
+            <div className="relative space-y-5">
+              <div className="flex items-start justify-between gap-4">
+                <div>
+                  <p className="text-balance font-serif text-3xl font-semibold leading-[1.04] text-arkane-text sm:text-5xl">
+                    {t.tagline}
+                  </p>
+                  <p className="mt-4 max-w-xl text-pretty text-sm leading-6 text-arkane-muted sm:text-base">{t.proof}</p>
+                </div>
+                <div className="hidden h-16 w-16 shrink-0 place-items-center rounded-[1.25rem] bg-black/25 text-arkane-amber shadow-inset ring-1 ring-arkane-line sm:grid">
+                  <ShieldCheck className="h-8 w-8" strokeWidth={1.6} />
+                </div>
               </div>
-              <div className="rounded-lg bg-white/[0.035] px-3 py-3 ring-1 ring-arkane-line">
-                <span className="block font-mono text-arkane-amber">PWA</span>
-                <span>offline shell</span>
-              </div>
-              <div className="rounded-lg bg-white/[0.035] px-3 py-3 ring-1 ring-arkane-line">
-                <span className="block font-mono text-arkane-amber">GitHub</span>
-                <span>private sync</span>
+
+              <div className="grid gap-2 sm:grid-cols-3">
+                {t.signals.map((signal) => (
+                  <div key={signal.value} className="rounded-2xl bg-white/[0.04] p-3 shadow-inset ring-1 ring-white/[0.065]">
+                    <span className="block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-arkane-amber">
+                      {signal.value}
+                    </span>
+                    <span className="text-sm text-arkane-muted">{signal.label}</span>
+                  </div>
+                ))}
               </div>
             </div>
           </div>
 
           {storedConnection ? (
-            <div className="rounded-lg bg-white/[0.03] p-4 ring-1 ring-arkane-line">
+            <div className="rounded-2xl bg-white/[0.035] p-4 shadow-inset ring-1 ring-arkane-line">
               <div className="flex items-center gap-3 text-sm text-arkane-muted">
-                <Github className="h-5 w-5 text-arkane-green" />
-                <span className="truncate">
-                  {storedConnection.repo} · token stored in this browser
+                <Github className="h-5 w-5 shrink-0 text-arkane-green" />
+                <span className="min-w-0 truncate">
+                  {storedConnection.repo} · {t.storedToken}
                 </span>
               </div>
             </div>
-          ) : null}
+          ) : (
+            <p className="max-w-xl text-pretty text-sm leading-6 text-arkane-faint">{t.securityNote}</p>
+          )}
         </div>
 
-        <div className="rounded-2xl bg-arkane-deck/95 p-4 shadow-glow ring-1 ring-arkane-line sm:p-5">
+        <div className="rounded-[1.75rem] bg-arkane-deck/95 p-3 shadow-glow ring-1 ring-arkane-line sm:p-4">
           {hasQuickPin && storedConnection ? (
-            <form onSubmit={submitPin} className="mb-4 rounded-xl bg-white/[0.035] p-4 ring-1 ring-arkane-line">
-              <div className="mb-3 flex items-center gap-3">
-                <Fingerprint className="h-5 w-5 text-arkane-amber" />
+            <form onSubmit={submitPin} className="mb-3 rounded-[1.25rem] bg-white/[0.04] p-4 shadow-inset ring-1 ring-white/[0.07]">
+              <div className="mb-3 flex items-start gap-3">
+                <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-arkane-amber/12 text-arkane-amber ring-1 ring-arkane-amber/20">
+                  <Fingerprint className="h-5 w-5" />
+                </div>
                 <div>
-                  <h2 className="font-serif text-lg text-arkane-text">Quick PIN</h2>
-                  <p className="text-sm text-arkane-muted">Expires after 8 hours. Three failed attempts disable it.</p>
+                  <h2 className="font-serif text-lg text-arkane-text">{t.quickPinTitle}</h2>
+                  <p className="text-sm leading-5 text-arkane-muted">{t.quickPinHelp}</p>
                 </div>
               </div>
-              <div className="flex gap-2">
+              <div className="flex flex-col gap-2 min-[420px]:flex-row">
                 <label className="sr-only" htmlFor="pin-unlock">
-                  6-digit Quick PIN
+                  {t.quickPinLabel}
                 </label>
                 <input
                   id="pin-unlock"
@@ -125,115 +153,105 @@ export function Gateway({ storedConnection, hasQuickPin, syncMessage, onMasterUn
                   onChange={(event) => setPinUnlock(event.target.value.replace(/\D/g, "").slice(0, 6))}
                   inputMode="numeric"
                   autoComplete="one-time-code"
-                  placeholder="••••••"
-                  className="min-h-11 flex-1 rounded-lg bg-black/30 px-4 font-mono text-lg tracking-[0.35em] text-arkane-text outline-none ring-1 ring-arkane-line transition-[box-shadow,background-color] focus-visible:ring-2 focus-visible:ring-arkane-amber"
+                  placeholder={t.quickPinPlaceholder}
+                  className="field-control flex-1 text-center font-mono text-lg tracking-[0.35em] min-[420px]:text-left"
                 />
                 <button
                   type="submit"
                   disabled={busy || pinUnlock.length !== 6}
-                  className="tap-target rounded-lg bg-arkane-amber px-4 font-semibold text-black transition-transform duration-150 ease-arkane active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                  className="tap-target inline-flex justify-center rounded-xl bg-arkane-amber px-4 font-semibold text-black shadow-amber transition-[transform,opacity] duration-150 ease-arkane active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
                 >
-                  Unlock
+                  {t.quickPinSubmit}
                 </button>
               </div>
             </form>
           ) : null}
 
-          <form onSubmit={submitMaster} className="space-y-4">
-            <div className="flex items-center gap-3">
-              <LockKeyhole className="h-5 w-5 text-arkane-green" />
+          <form onSubmit={submitMaster} className="rounded-[1.25rem] bg-black/[0.16] p-4 ring-1 ring-white/[0.055]">
+            <div className="mb-4 flex items-start gap-3">
+              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-arkane-green/12 text-arkane-green ring-1 ring-arkane-green/20">
+                <LockKeyhole className="h-5 w-5" />
+              </div>
               <div>
-                <h2 className="font-serif text-xl text-arkane-text">Master unlock</h2>
-                <p className="text-sm text-arkane-muted">The master password stays in memory only.</p>
+                <h2 className="font-serif text-xl text-arkane-text">{t.masterTitle}</h2>
+                <p className="text-sm leading-5 text-arkane-muted">{t.masterHelp}</p>
               </div>
             </div>
 
             <div className="grid gap-3">
               <label className="space-y-2">
-                <span className="text-sm text-arkane-muted">GitHub Personal Access Token</span>
+                <span className="text-sm text-arkane-muted">{t.tokenLabel}</span>
                 <input
                   value={token}
                   onChange={(event) => setToken(event.target.value)}
                   autoComplete="off"
                   spellCheck={false}
-                  placeholder="github_pat_..."
-                  className="min-h-11 w-full rounded-lg bg-black/30 px-4 font-mono text-sm text-arkane-text outline-none ring-1 ring-arkane-line transition-[box-shadow,background-color] focus-visible:ring-2 focus-visible:ring-arkane-amber"
+                  placeholder={t.tokenPlaceholder}
+                  className="field-control font-mono text-sm"
                 />
-                <span className="block text-xs leading-relaxed text-arkane-faint">
-                  Stored in this browser to reconnect. Use a fine-grained token limited to your private vault repository.
-                </span>
+                <span className="block text-xs leading-relaxed text-arkane-faint">{t.tokenHelp}</span>
               </label>
               <label className="space-y-2">
-                <span className="text-sm text-arkane-muted">Private repo</span>
+                <span className="text-sm text-arkane-muted">{t.repoLabel}</span>
                 <input
                   value={repo}
                   onChange={(event) => setRepo(event.target.value)}
                   autoComplete="off"
                   spellCheck={false}
-                  placeholder="username/arkane-vault"
-                  className="min-h-11 w-full rounded-lg bg-black/30 px-4 font-mono text-sm text-arkane-text outline-none ring-1 ring-arkane-line transition-[box-shadow,background-color] focus-visible:ring-2 focus-visible:ring-arkane-amber"
+                  placeholder={t.repoPlaceholder}
+                  className="field-control font-mono text-sm"
                 />
               </label>
-              <div className="grid grid-cols-2 gap-3">
+              <div className="grid gap-3 sm:grid-cols-2">
                 <label className="space-y-2">
-                  <span className="text-sm text-arkane-muted">Branch</span>
-                  <input
-                    value={branch}
-                    onChange={(event) => setBranch(event.target.value)}
-                    className="min-h-11 w-full rounded-lg bg-black/30 px-4 font-mono text-sm text-arkane-text outline-none ring-1 ring-arkane-line transition-[box-shadow,background-color] focus-visible:ring-2 focus-visible:ring-arkane-amber"
-                  />
+                  <span className="text-sm text-arkane-muted">{t.branchLabel}</span>
+                  <input value={branch} onChange={(event) => setBranch(event.target.value)} className="field-control font-mono text-sm" />
                 </label>
                 <label className="space-y-2">
-                  <span className="text-sm text-arkane-muted">Vault path</span>
-                  <input
-                    value={path}
-                    onChange={(event) => setPath(event.target.value)}
-                    className="min-h-11 w-full rounded-lg bg-black/30 px-4 font-mono text-sm text-arkane-text outline-none ring-1 ring-arkane-line transition-[box-shadow,background-color] focus-visible:ring-2 focus-visible:ring-arkane-amber"
-                  />
+                  <span className="text-sm text-arkane-muted">{t.pathLabel}</span>
+                  <input value={path} onChange={(event) => setPath(event.target.value)} className="field-control font-mono text-sm" />
                 </label>
               </div>
               <label className="space-y-2">
-                <span className="text-sm text-arkane-muted">Master password</span>
+                <span className="text-sm text-arkane-muted">{t.passwordLabel}</span>
                 <input
                   type="password"
                   value={masterPassword}
                   onChange={(event) => setMasterPassword(event.target.value)}
                   autoComplete="current-password"
-                  className="min-h-11 w-full rounded-lg bg-black/30 px-4 text-arkane-text outline-none ring-1 ring-arkane-line transition-[box-shadow,background-color] focus-visible:ring-2 focus-visible:ring-arkane-amber"
+                  className="field-control"
                 />
               </label>
               <label className="space-y-2">
-                <span className="text-sm text-arkane-muted">Set 6-digit Quick PIN</span>
+                <span className="text-sm text-arkane-muted">{t.quickPinSetLabel}</span>
                 <input
                   value={quickPin}
                   onChange={(event) => setQuickPin(event.target.value.replace(/\D/g, "").slice(0, 6))}
                   inputMode="numeric"
                   autoComplete="one-time-code"
-                  placeholder="optional"
-                  className="min-h-11 w-full rounded-lg bg-black/30 px-4 font-mono text-sm tracking-[0.24em] text-arkane-text outline-none ring-1 ring-arkane-line transition-[box-shadow,background-color] focus-visible:ring-2 focus-visible:ring-arkane-amber"
+                  placeholder={t.quickPinSetPlaceholder}
+                  className="field-control font-mono text-sm tracking-[0.24em]"
                 />
-                <span className="block text-xs leading-relaxed text-arkane-faint">
-                  Optional device-session convenience. It does not replace the master password.
-                </span>
+                <span className="block text-xs leading-relaxed text-arkane-faint">{t.quickPinSetHelp}</span>
               </label>
             </div>
 
             {error ? (
-              <div className="flex gap-3 rounded-lg bg-arkane-red/15 p-3 text-sm text-red-100 ring-1 ring-arkane-red/30">
+              <div className="mt-4 flex gap-3 rounded-2xl bg-arkane-red/15 p-3 text-sm text-red-100 ring-1 ring-arkane-red/30">
                 <ShieldAlert className="mt-0.5 h-5 w-5 shrink-0" />
                 <span>{error}</span>
               </div>
             ) : null}
 
-            <div className="flex items-center justify-between gap-3">
-              <p className="min-h-5 text-xs text-arkane-faint">{syncMessage}</p>
+            <div className="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+              <p className="min-h-5 min-w-0 text-xs leading-5 text-arkane-faint">{syncMessage}</p>
               <button
                 type="submit"
                 disabled={busy}
-                className="tap-target inline-flex items-center gap-2 rounded-lg bg-arkane-green px-5 font-semibold text-black transition-transform duration-150 ease-arkane active:scale-95 disabled:cursor-not-allowed disabled:opacity-50"
+                className="tap-target inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-arkane-green px-5 font-semibold text-black shadow-amber transition-[transform,opacity] duration-150 ease-arkane active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <KeyRound className="h-4 w-4" />
-                Open vault
+                {t.openVault}
               </button>
             </div>
           </form>

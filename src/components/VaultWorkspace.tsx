@@ -1,6 +1,7 @@
 import { useMemo, useState } from "react";
 import type { NewVaultItemInput } from "../hooks/useVaultEngine";
 import { getExpiringItems } from "../lib/expiry";
+import { copy, type AppLanguage } from "../lib/i18n";
 import type { GitHubConnection, SyncState, VaultCategory, VaultData, VaultItem, VaultSentry } from "../types";
 import { AddItemSheet } from "./workspace/AddItemSheet";
 import { BottomNav, SideRail } from "./workspace/Navigation";
@@ -9,10 +10,14 @@ import { ConnectionPanel, ExpiryPanel, Header, StatusStrip } from "./workspace/S
 import { VaultSection } from "./workspace/VaultSection";
 
 interface VaultWorkspaceProps {
+  copy: (typeof copy)[AppLanguage]["workspace"];
+  language: AppLanguage;
+  languageLabels: (typeof copy)[AppLanguage]["language"];
   vault: VaultData;
   connection: GitHubConnection | null;
   syncState: SyncState;
   online: boolean;
+  onToggleLanguage: () => void;
   onAddItem: (input: NewVaultItemInput) => void;
   onDeleteItem: (id: string) => void;
   onUpdateSentry: (sentry: VaultSentry) => void;
@@ -22,10 +27,14 @@ interface VaultWorkspaceProps {
 }
 
 export function VaultWorkspace({
+  copy: t,
+  language,
+  languageLabels,
   vault,
   connection,
   syncState,
   online,
+  onToggleLanguage,
   onAddItem,
   onDeleteItem,
   onUpdateSentry,
@@ -45,9 +54,9 @@ export function VaultWorkspace({
   async function copyValue(value: string, label: string) {
     try {
       await navigator.clipboard.writeText(value);
-      setToast(`${label} copied. Clear your clipboard after use.`);
+      setToast(`${label} ${t.copiedSuffix}`);
     } catch {
-      setToast("Clipboard access failed. Copy the value manually.");
+      setToast(t.clipboardFailed);
     }
     window.setTimeout(() => setToast(""), 3600);
   }
@@ -55,12 +64,16 @@ export function VaultWorkspace({
   return (
     <main id="main-content" className="flex h-full min-h-0 flex-col overflow-hidden">
       <div className="flex min-h-0 flex-1" inert={addOpen ? true : undefined}>
-        <SideRail activeCategory={activeCategory} onSelect={setActiveCategory} />
-        <section className="app-scroll relative min-w-0 flex-1 overflow-y-auto px-4 pb-[calc(env(safe-area-inset-bottom)+96px)] pt-[calc(env(safe-area-inset-top)+14px)] sm:px-6 lg:pb-8 lg:pl-8 lg:pr-10">
+        <SideRail labels={t.categories} activeCategory={activeCategory} onSelect={setActiveCategory} />
+        <section className="app-scroll scroll-fade relative min-w-0 flex-1 overflow-y-auto px-4 pb-[calc(env(safe-area-inset-bottom)+96px)] pt-[calc(env(safe-area-inset-top)+14px)] sm:px-6 lg:pb-8 lg:pl-8 lg:pr-10">
           <Header
+            copy={t}
+            language={language}
+            languageLabels={languageLabels}
             connection={connection}
             online={online}
             syncState={syncState}
+            onToggleLanguage={onToggleLanguage}
             onManualSync={onManualSync}
             onLock={onLock}
             onDisconnect={onDisconnect}
@@ -68,9 +81,11 @@ export function VaultWorkspace({
 
           <div className="mt-5 grid gap-4 lg:grid-cols-[minmax(0,1fr)_320px]">
             <div className="min-w-0 space-y-4">
-              <StatusStrip vault={vault} expiringCount={expiringItems.length} />
+              <StatusStrip copy={t} vault={vault} expiringCount={expiringItems.length} />
               {activeCategory === "sentry" ? (
                 <SentryPanel
+                  copy={t}
+                  language={language}
                   vault={vault}
                   connection={connection}
                   syncState={syncState}
@@ -78,6 +93,8 @@ export function VaultWorkspace({
                 />
               ) : (
                 <VaultSection
+                  copy={t}
+                  language={language}
                   category={activeCategory}
                   items={activeItems}
                   onCopy={copyValue}
@@ -88,24 +105,26 @@ export function VaultWorkspace({
             </div>
 
             <aside className="hidden space-y-4 lg:block">
-              <ExpiryPanel items={expiringItems} />
-              <ConnectionPanel connection={connection} online={online} syncState={syncState} />
+              <ExpiryPanel copy={t} language={language} items={expiringItems} />
+              <ConnectionPanel copy={t} language={language} connection={connection} online={online} syncState={syncState} />
             </aside>
           </div>
         </section>
       </div>
 
       <div inert={addOpen ? true : undefined}>
-        <BottomNav activeCategory={activeCategory} onSelect={setActiveCategory} />
+        <BottomNav labels={t.categories} activeCategory={activeCategory} onSelect={setActiveCategory} />
       </div>
       {addOpen ? (
         <AddItemSheet
+          copy={t.addSheet}
           category={activeCategory === "sentry" ? "credentials" : (activeCategory as VaultItem["category"])}
+          categoryLabel={t.categories[activeCategory === "sentry" ? "credentials" : activeCategory].eyebrow}
           onClose={() => setAddOpen(false)}
           onAdd={(input) => {
             onAddItem(input);
             setAddOpen(false);
-            setToast("Encrypted commit queued");
+            setToast(t.encryptedCommitQueued);
           }}
         />
       ) : null}

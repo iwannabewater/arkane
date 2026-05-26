@@ -2,11 +2,11 @@ export function cn(...values: Array<string | false | null | undefined>) {
   return values.filter(Boolean).join(" ");
 }
 
-export function formatShortDate(value?: string) {
+export function formatShortDate(value?: string, locale?: string) {
   if (!value) {
     return "None";
   }
-  return new Intl.DateTimeFormat(undefined, {
+  return new Intl.DateTimeFormat(locale, {
     month: "short",
     day: "numeric",
     year: "numeric"

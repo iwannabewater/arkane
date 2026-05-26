@@ -2,8 +2,9 @@ import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
 
 const DIST = new URL("../dist/", import.meta.url).pathname;
-const MAX_DIST_BYTES = 600 * 1024;
-const MAX_FONT_BYTES = 100 * 1024;
+// The design system intentionally ships curated CJK and Latin font subsets.
+const MAX_DIST_BYTES = 1700 * 1024;
+const MAX_FONT_BYTES = 1100 * 1024;
 
 function filesUnder(directory) {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
