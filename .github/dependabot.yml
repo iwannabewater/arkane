@@ -7,6 +7,14 @@ updates:
     groups:
       development-dependencies:
         dependency-type: development
+        update-types:
+          - minor
+          - patch
+    ignore:
+      # Tailwind v4 changes PostCSS integration and browser support; migrate it explicitly with UI regression coverage.
+      - dependency-name: tailwindcss
+        update-types:
+          - version-update:semver-major
   - package-ecosystem: github-actions
     directory: /
     schedule:
