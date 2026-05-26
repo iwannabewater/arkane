@@ -3,14 +3,16 @@ import { cn } from "../../lib/ui";
 import { CATEGORIES } from "./categories";
 
 export function SideRail({
+  labels,
   activeCategory,
   onSelect
 }: {
+  labels: Record<VaultCategory, { nav: string; title: string; eyebrow: string }>;
   activeCategory: VaultCategory;
   onSelect: (category: VaultCategory) => void;
 }) {
   return (
-    <nav className="hidden w-[92px] shrink-0 border-r border-white/[0.06] bg-black/20 px-3 py-[calc(env(safe-area-inset-top)+18px)] lg:block">
+    <nav className="hidden w-[96px] shrink-0 border-r border-white/[0.06] bg-black/25 px-3 py-[calc(env(safe-area-inset-top)+18px)] lg:block">
       <div className="flex flex-col gap-3">
         {CATEGORIES.map((category) => {
           const Icon = category.icon;
@@ -20,16 +22,17 @@ export function SideRail({
               key={category.id}
               type="button"
               onClick={() => onSelect(category.id)}
-              aria-label={category.en}
+              aria-label={labels[category.id].nav}
+              aria-current={active ? "page" : undefined}
               className={cn(
-                "tap-target grid h-16 place-items-center rounded-xl transition-[transform,background-color,color] duration-150 ease-arkane active:scale-95",
+                "tap-target group grid h-16 place-items-center rounded-2xl shadow-inset transition-[transform,background-color,color,box-shadow] duration-150 ease-arkane active:scale-[0.96]",
                 active
                   ? "bg-arkane-amber text-black shadow-amber"
-                  : "bg-white/[0.035] text-arkane-muted ring-1 ring-arkane-line [@media(hover:hover)]:hover:bg-white/[0.07] [@media(hover:hover)]:hover:text-arkane-text"
+                  : "bg-white/[0.035] text-arkane-muted ring-1 ring-arkane-line [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text"
               )}
             >
               <Icon className="h-5 w-5" />
-              <span className="sr-only">{category.en}</span>
+              <span className="sr-only">{labels[category.id].nav}</span>
             </button>
           );
         })}
@@ -39,14 +42,16 @@ export function SideRail({
 }
 
 export function BottomNav({
+  labels,
   activeCategory,
   onSelect
 }: {
+  labels: Record<VaultCategory, { nav: string; title: string; eyebrow: string }>;
   activeCategory: VaultCategory;
   onSelect: (category: VaultCategory) => void;
 }) {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-white/[0.08] bg-arkane-canvas/95 px-2 pb-[calc(env(safe-area-inset-bottom)+8px)] pt-2 lg:hidden">
+    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-white/[0.08] bg-arkane-canvas/97 px-2 pb-[calc(env(safe-area-inset-bottom)+8px)] pt-2 shadow-[0_-18px_38px_oklch(0%_0_0_/_0.32)] lg:hidden">
       <div className="mx-auto grid max-w-lg grid-cols-4 gap-1">
         {CATEGORIES.map((category) => {
           const Icon = category.icon;
@@ -57,13 +62,13 @@ export function BottomNav({
               type="button"
               onClick={() => onSelect(category.id)}
               className={cn(
-                "tap-target flex min-h-[58px] flex-col items-center justify-center gap-1 rounded-xl text-xs transition-[transform,background-color,color] duration-150 ease-arkane active:scale-95",
-                active ? "bg-arkane-amber text-black" : "text-arkane-muted"
+                "tap-target flex min-h-[58px] flex-col items-center justify-center gap-1 rounded-2xl text-[11px] transition-[transform,background-color,color] duration-150 ease-arkane active:scale-[0.96]",
+                active ? "bg-arkane-amber text-black shadow-amber" : "text-arkane-muted"
               )}
               aria-current={active ? "page" : undefined}
             >
               <Icon className="h-5 w-5" />
-              <span className="leading-none">{category.cn}</span>
+              <span className="max-w-full truncate leading-none">{labels[category.id].nav}</span>
             </button>
           );
         })}

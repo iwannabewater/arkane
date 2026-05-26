@@ -1,4 +1,139 @@
-@import "charter-webfont/charter.css";
+@font-face {
+  font-family: "Ysabeau Office Variable";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 1 1000;
+  src: url("../node_modules/@fontsource-variable/ysabeau-office/files/ysabeau-office-latin-wght-normal.woff2")
+    format("woff2-variations");
+}
+
+@font-face {
+  font-family: "Charter";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/charter-webfont/fonts/charter_regular.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Charter";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 700;
+  src: url("../node_modules/charter-webfont/fonts/charter_bold.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 109";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-109.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 110";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-110.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 111";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-111.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 112";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-112.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 113";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-113.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 114";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-114.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 115";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-115.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 116";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-116.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 117";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-117.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 118";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-118.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "LXGW WenKai UI 119";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/lxgw-wenkai-screen-webfont/files/lxgwwenkaiscreen-subset-119.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 116";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-116-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 118";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-118-400-normal.woff2") format("woff2");
+}
+
+@font-face {
+  font-family: "Noto Serif SC UI 119";
+  font-style: normal;
+  font-display: swap;
+  font-weight: 400;
+  src: url("../node_modules/@fontsource/noto-serif-sc/files/noto-serif-sc-119-400-normal.woff2") format("woff2");
+}
 
 @tailwind base;
 @tailwind components;
@@ -10,6 +145,12 @@
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --arkane-font-cn: "LXGW WenKai UI 119", "LXGW WenKai UI 118", "LXGW WenKai UI 117", "LXGW WenKai UI 116",
+    "LXGW WenKai UI 115", "LXGW WenKai UI 114", "LXGW WenKai UI 113", "LXGW WenKai UI 112",
+    "LXGW WenKai UI 111", "LXGW WenKai UI 110", "LXGW WenKai UI 109";
+  --arkane-font-serif-cn: "Noto Serif SC UI 119", "Noto Serif SC UI 118", "Noto Serif SC UI 116", var(--arkane-font-cn);
+  --arkane-font-sans: "Ysabeau Office Variable", var(--arkane-font-cn), sans-serif;
+  --arkane-font-serif: "Charter", var(--arkane-font-serif-cn), serif;
 }
 
 html,
@@ -24,15 +165,17 @@ body {
 
 html {
   overscroll-behavior: contain;
-  background: #080a08;
+  background: #070906;
 }
 
 body {
   margin: 0;
   overflow: hidden;
-  background: #080a08;
-  color: oklch(91% 0.018 100);
-  font-family: "Avenir Next", "PingFang SC", "Microsoft YaHei", system-ui, sans-serif;
+  background:
+    linear-gradient(115deg, oklch(10% 0.018 150) 0%, transparent 42%),
+    linear-gradient(180deg, oklch(7% 0.012 135), oklch(5.5% 0.012 120));
+  color: oklch(92% 0.017 100);
+  font-family: var(--arkane-font-sans);
   touch-action: manipulation;
 }
 
@@ -76,9 +219,56 @@ button {
 
 .surface-grid {
   background-image:
-    linear-gradient(90deg, oklch(100% 0 0 / 0.04) 1px, transparent 1px),
-    linear-gradient(0deg, oklch(100% 0 0 / 0.035) 1px, transparent 1px);
-  background-size: 32px 32px;
+    linear-gradient(90deg, oklch(100% 0 0 / 0.052) 1px, transparent 1px),
+    linear-gradient(0deg, oklch(100% 0 0 / 0.038) 1px, transparent 1px);
+  background-size: 28px 28px;
+}
+
+.vault-plate {
+  position: relative;
+  overflow: hidden;
+}
+
+.vault-plate::before {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(90deg, transparent, oklch(78% 0.105 84 / 0.09), transparent),
+    repeating-linear-gradient(90deg, oklch(100% 0 0 / 0.04) 0 1px, transparent 1px 18px);
+  opacity: 0.42;
+  mask-image: linear-gradient(180deg, black, transparent 72%);
+}
+
+.field-control {
+  min-height: 2.75rem;
+  width: 100%;
+  border-radius: 0.875rem;
+  background: oklch(0% 0 0 / 0.24);
+  padding: 0.75rem 1rem;
+  color: oklch(92% 0.017 100);
+  outline: none;
+  box-shadow:
+    inset 0 1px 0 oklch(100% 0 0 / 0.035),
+    0 0 0 1px oklch(100% 0 0 / 0.08);
+  transition:
+    background-color 150ms cubic-bezier(0.16, 1, 0.3, 1),
+    box-shadow 150ms cubic-bezier(0.16, 1, 0.3, 1),
+    transform 150ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.field-control:focus-visible {
+  background: oklch(0% 0 0 / 0.31);
+  box-shadow:
+    inset 0 1px 0 oklch(100% 0 0 / 0.05),
+    0 0 0 1px oklch(78% 0.12 84 / 0.52),
+    0 0 0 4px oklch(78% 0.12 84 / 0.12);
+}
+
+.scroll-fade {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(78% 0.1 84 / 0.45) transparent;
 }
 
 @media (max-width: 1023px) {

@@ -12,8 +12,11 @@
     "check": "npm run test && npm run build"
   },
   "dependencies": {
+    "@fontsource-variable/ysabeau-office": "^5.2.8",
+    "@fontsource/noto-serif-sc": "^5.2.9",
     "charter-webfont": "^4.1.0",
     "lucide-react": "^1.16.0",
+    "lxgw-wenkai-screen-webfont": "^1.7.0",
     "react": "^19.2.6",
     "react-dom": "^19.2.6"
   },
