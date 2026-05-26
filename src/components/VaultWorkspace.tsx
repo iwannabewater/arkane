@@ -129,7 +129,7 @@ export function VaultWorkspace({
         />
       ) : null}
       {toast ? (
-        <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+88px)] left-1/2 z-50 -translate-x-1/2 rounded-full bg-arkane-text px-4 py-2 text-sm font-semibold text-black shadow-amber">
+        <div className="fixed bottom-[calc(env(safe-area-inset-bottom)+88px)] left-1/2 z-50 -translate-x-1/2 rounded-full bg-arkane-text px-4 py-2 text-sm font-semibold text-arkane-canvas shadow-amber">
           {toast}
         </div>
       ) : null}

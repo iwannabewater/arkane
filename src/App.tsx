@@ -101,7 +101,7 @@ export default function App() {
         onDisconnect={engine.disconnect}
       />
       {!online ? (
-        <div className="fixed left-1/2 top-[calc(env(safe-area-inset-top)+12px)] z-[60] flex max-w-[calc(100vw-24px)] -translate-x-1/2 items-center gap-2 rounded-full bg-arkane-amber px-4 py-2 text-sm font-semibold text-black shadow-amber">
+        <div className="fixed left-1/2 top-[calc(env(safe-area-inset-top)+12px)] z-[60] flex max-w-[calc(100vw-24px)] -translate-x-1/2 items-center gap-2 rounded-full bg-arkane-amber px-4 py-2 text-sm font-semibold text-arkane-canvas shadow-amber">
           <CircleAlert className="h-4 w-4" />
           <span className="truncate">{t.app.offlineWarning}</span>
         </div>

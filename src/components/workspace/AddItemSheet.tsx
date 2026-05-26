@@ -104,7 +104,7 @@ export function AddItemSheet({
   }
 
   return (
-    <div className="fixed inset-0 z-50 bg-black/[0.82] backdrop-blur-md sm:grid sm:place-items-center sm:p-4">
+    <div className="fixed inset-0 z-50 bg-arkane-canvas/90 sm:grid sm:place-items-center sm:p-4">
       <section
         ref={dialogRef}
         role="dialog"
@@ -187,7 +187,7 @@ export function AddItemSheet({
             />
           </label>
           <div className="rounded-2xl bg-white/[0.04] p-3 shadow-inset ring-1 ring-arkane-line">
-            <label className="tap-target interactive-surface inline-flex cursor-pointer items-center gap-2 rounded-xl bg-black/25 px-4 text-sm text-arkane-text ring-1 ring-arkane-line active:scale-[0.96]">
+            <label className="tap-target interactive-surface inline-flex cursor-pointer items-center gap-2 rounded-xl bg-arkane-canvas/55 px-4 text-sm text-arkane-text ring-1 ring-arkane-line active:scale-[0.96]">
               <Upload className="h-4 w-4 text-arkane-amber" />
               {t.attach}
               <input type="file" accept="image/png,image/jpeg,image/webp,image/gif" className="sr-only" onChange={handleFile} />
@@ -209,7 +209,7 @@ export function AddItemSheet({
             </button>
             <button
               type="submit"
-              className="tap-target interactive-surface rounded-xl bg-arkane-green px-5 font-semibold text-black shadow-amber active:scale-[0.96]"
+              className="tap-target interactive-surface rounded-xl bg-arkane-green px-5 font-semibold text-arkane-canvas shadow-amber active:scale-[0.96]"
             >
               {t.submit}
             </button>
