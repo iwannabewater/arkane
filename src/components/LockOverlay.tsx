@@ -119,7 +119,7 @@ export function LockOverlay({
             <button
               type="submit"
               disabled={busy || pin.length !== 6}
-              className="tap-target interactive-surface inline-flex items-center justify-center gap-2 rounded-xl bg-arkane-amber px-4 font-semibold text-black shadow-amber active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
+              className="tap-target interactive-surface inline-flex items-center justify-center gap-2 rounded-xl bg-arkane-amber px-4 font-semibold text-arkane-canvas shadow-amber active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
             >
               <LockKeyhole className="h-4 w-4" />
               {t.unlock}

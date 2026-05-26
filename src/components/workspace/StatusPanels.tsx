@@ -70,7 +70,7 @@ export function Header({
   }
 
   return (
-    <header className="vault-plate rounded-[1.5rem] bg-black/[0.18] p-3 shadow-inset ring-1 ring-arkane-line sm:flex sm:items-center sm:justify-between">
+    <header className="vault-plate rounded-[1.5rem] bg-arkane-deck/72 p-3 shadow-inset ring-1 ring-arkane-line sm:flex sm:items-center sm:justify-between">
       <div className="flex min-w-0 items-center gap-3">
         <LogoMark className="h-11 w-11 rounded-2xl" />
         <div className="min-w-0">

@@ -12,27 +12,27 @@ export default {
       },
       colors: {
         arkane: {
-          canvas: "oklch(7.5% 0.014 145)",
-          deck: "oklch(10.5% 0.016 142)",
-          panel: "oklch(15% 0.022 138)",
-          panelHigh: "oklch(20% 0.028 132)",
-          line: "oklch(100% 0 0 / 0.085)",
-          lineStrong: "oklch(82% 0.08 86 / 0.22)",
-          text: "oklch(92% 0.017 100)",
-          muted: "oklch(72% 0.024 112)",
-          faint: "oklch(54% 0.024 126)",
-          amber: "oklch(78% 0.13 82)",
-          red: "oklch(65% 0.18 28)",
-          green: "oklch(74% 0.13 155)",
-          cyan: "oklch(76% 0.1 190)",
-          brass: "oklch(67% 0.09 84)",
-          ivory: "oklch(88% 0.052 92)"
+          canvas: "oklch(6.6% 0.012 295)",
+          deck: "oklch(10.2% 0.014 286)",
+          panel: "oklch(14.4% 0.017 278)",
+          panelHigh: "oklch(18.6% 0.021 270)",
+          line: "oklch(91% 0.026 88 / 0.092)",
+          lineStrong: "oklch(77% 0.066 78 / 0.24)",
+          text: "oklch(91.5% 0.034 88)",
+          muted: "oklch(73% 0.028 84)",
+          faint: "oklch(55% 0.026 84)",
+          amber: "oklch(75% 0.095 78)",
+          red: "oklch(62% 0.16 27)",
+          green: "oklch(71% 0.115 153)",
+          cyan: "oklch(66% 0.07 238)",
+          brass: "oklch(64% 0.063 79)",
+          ivory: "oklch(88.5% 0.048 88)"
         }
       },
       boxShadow: {
-        glow: "0 0 0 1px oklch(100% 0 0 / 0.08), 0 24px 90px oklch(0% 0 0 / 0.42)",
-        amber: "0 0 28px oklch(78% 0.13 82 / 0.2)",
-        inset: "inset 0 1px 0 oklch(100% 0 0 / 0.05)"
+        glow: "0 0 0 1px oklch(91% 0.026 88 / 0.085), 0 26px 90px oklch(0% 0 0 / 0.46)",
+        amber: "0 18px 38px oklch(75% 0.095 78 / 0.12)",
+        inset: "inset 0 1px 0 oklch(100% 0 0 / 0.045)"
       },
       transitionTimingFunction: {
         arkane: "cubic-bezier(0.16, 1, 0.3, 1)"

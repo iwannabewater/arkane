@@ -1,20 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Arkane">
   <defs>
     <linearGradient id="bg" x1="70" y1="30" x2="440" y2="500" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#172316"/>
-      <stop offset="0.55" stop-color="#080b08"/>
-      <stop offset="1" stop-color="#030503"/>
+      <stop stop-color="#17121d"/>
+      <stop offset="0.58" stop-color="#08070c"/>
+      <stop offset="1" stop-color="#030304"/>
     </linearGradient>
     <linearGradient id="gold" x1="116" y1="42" x2="402" y2="442" gradientUnits="userSpaceOnUse">
-      <stop stop-color="#ffe58d"/>
-      <stop offset="0.5" stop-color="#e9b84d"/>
-      <stop offset="1" stop-color="#a97822"/>
+      <stop stop-color="#ead79e"/>
+      <stop offset="0.52" stop-color="#c9a45b"/>
+      <stop offset="1" stop-color="#8f6c35"/>
     </linearGradient>
   </defs>
   <rect width="512" height="512" rx="116" fill="url(#bg)"/>
-  <path d="M83 92h346M96 420h320M92 88v334M420 92v328" stroke="#e8c46b" stroke-opacity=".18" stroke-width="6" stroke-linecap="round"/>
-  <path d="M256 58 402 121v119c0 101-55 168-146 210-91-42-146-109-146-210V121L256 58Z" fill="#101a13" stroke="url(#gold)" stroke-width="18" stroke-linejoin="round"/>
-  <path d="M256 116 343 154v79c0 68-32 114-87 143-55-29-87-75-87-143v-79l87-38Z" fill="#17261b" stroke="#63d99a" stroke-width="9" stroke-linejoin="round" stroke-opacity=".85"/>
-  <path d="M197 263 241 308 319 202" stroke="#f7f0d0" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
-  <path d="M184 384h144" stroke="#e8c46b" stroke-width="13" stroke-linecap="round" stroke-opacity=".72"/>
+  <path d="M83 92h346M96 420h320M92 88v334M420 92v328" stroke="#d8bd7d" stroke-opacity=".16" stroke-width="6" stroke-linecap="round"/>
+  <path d="M256 58 402 121v119c0 101-55 168-146 210-91-42-146-109-146-210V121L256 58Z" fill="#141119" stroke="url(#gold)" stroke-width="18" stroke-linejoin="round"/>
+  <path d="M256 116 343 154v79c0 68-32 114-87 143-55-29-87-75-87-143v-79l87-38Z" fill="#151c18" stroke="#62c58f" stroke-width="9" stroke-linejoin="round" stroke-opacity=".82"/>
+  <path d="M197 263 241 308 319 202" stroke="#eee6ce" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M184 384h144" stroke="#c9a45b" stroke-width="13" stroke-linecap="round" stroke-opacity=".68"/>
 </svg>

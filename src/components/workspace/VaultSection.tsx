@@ -36,7 +36,7 @@ export function VaultSection({
         <button
           type="button"
           onClick={onAdd}
-          className="tap-target interactive-surface inline-flex items-center gap-2 rounded-xl bg-arkane-amber px-4 font-semibold text-black shadow-amber active:scale-[0.96]"
+          className="tap-target interactive-surface inline-flex items-center gap-2 rounded-xl bg-arkane-amber px-4 font-semibold text-arkane-canvas shadow-amber active:scale-[0.96]"
         >
           <Plus className="h-4 w-4" />
           {t.add}
@@ -50,7 +50,7 @@ export function VaultSection({
           ))}
         </div>
       ) : (
-        <div className="surface-grid relative grid min-h-[360px] overflow-hidden rounded-[1.35rem] bg-black/20 p-6 shadow-inset ring-1 ring-arkane-line sm:grid-cols-[minmax(0,1fr)_220px] sm:p-8 lg:min-h-[500px]">
+        <div className="surface-grid relative grid min-h-[360px] overflow-hidden rounded-[1.35rem] bg-arkane-canvas/45 p-6 shadow-inset ring-1 ring-arkane-line sm:grid-cols-[minmax(0,1fr)_220px] sm:p-8 lg:min-h-[500px]">
           <div className="relative z-10 flex max-w-xl flex-col justify-start pt-8 sm:justify-center sm:pt-0">
             <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-arkane-amber/12 text-arkane-amber ring-1 ring-arkane-amber/25">
               <KeyRound className="h-7 w-7" />
@@ -60,14 +60,14 @@ export function VaultSection({
             <button
               type="button"
               onClick={onAdd}
-              className="tap-target interactive-surface mt-6 inline-flex w-fit items-center gap-2 rounded-xl bg-arkane-green px-5 font-semibold text-black shadow-amber active:scale-[0.96]"
+              className="tap-target interactive-surface mt-6 inline-flex w-fit items-center gap-2 rounded-xl bg-arkane-green px-5 font-semibold text-arkane-canvas shadow-amber active:scale-[0.96]"
             >
               <Plus className="h-4 w-4" />
               {t.add}
             </button>
           </div>
           <div className="pointer-events-none absolute -right-8 bottom-2 hidden h-64 w-64 place-items-center rounded-[2.5rem] border border-arkane-lineStrong bg-white/[0.025] sm:grid">
-            <div className="grid h-40 w-40 place-items-center rounded-[2rem] bg-black/[0.22] ring-1 ring-arkane-line">
+            <div className="grid h-40 w-40 place-items-center rounded-[2rem] bg-arkane-canvas/55 ring-1 ring-arkane-line">
               <ShieldCheck className="h-20 w-20 text-arkane-green/55" />
             </div>
           </div>
@@ -120,7 +120,7 @@ function VaultItemCard({
         {item.fields.map((field) => {
           const visible = !field.concealed || revealed[field.id];
           return (
-            <div key={field.id} className="rounded-2xl bg-black/20 p-3 shadow-inset ring-1 ring-arkane-line">
+            <div key={field.id} className="rounded-2xl bg-arkane-canvas/45 p-3 shadow-inset ring-1 ring-arkane-line">
               <div className="mb-1 flex items-center justify-between gap-2">
                 <span className="text-xs uppercase tracking-[0.12em] text-arkane-faint">{field.label}</span>
                 <div className="flex gap-1">
@@ -199,7 +199,7 @@ function getExpiryTone(item: VaultItem, t: WorkspaceCopy, language: AppLanguage)
 function AttachmentPreview({ copy: t, attachment }: { copy: WorkspaceCopy; attachment: VaultAttachment }) {
   const isImage = attachment.previewDataUrl && attachment.mimeType.startsWith("image/");
   return (
-    <div className="mt-3 overflow-hidden rounded-2xl bg-black/20 shadow-inset ring-1 ring-arkane-line">
+    <div className="mt-3 overflow-hidden rounded-2xl bg-arkane-canvas/45 shadow-inset ring-1 ring-arkane-line">
       {isImage ? (
         <img
           src={attachment.previewDataUrl}
