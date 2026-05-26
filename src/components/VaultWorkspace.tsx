@@ -65,7 +65,7 @@ export function VaultWorkspace({
     <main id="main-content" className="flex h-full min-h-0 flex-col overflow-hidden">
       <div className="flex min-h-0 flex-1" inert={addOpen ? true : undefined}>
         <SideRail labels={t.categories} activeCategory={activeCategory} onSelect={setActiveCategory} />
-        <section className="app-scroll scroll-fade relative min-w-0 flex-1 overflow-y-auto px-4 pb-[calc(env(safe-area-inset-bottom)+96px)] pt-[calc(env(safe-area-inset-top)+14px)] sm:px-6 lg:pb-8 lg:pl-8 lg:pr-10">
+        <section className="app-scroll scroll-fade surface-grid relative min-w-0 flex-1 overflow-y-auto px-4 pb-[calc(env(safe-area-inset-bottom)+96px)] pt-[calc(env(safe-area-inset-top)+14px)] sm:px-6 lg:pb-8 lg:pl-8 lg:pr-10">
           <Header
             copy={t}
             language={language}

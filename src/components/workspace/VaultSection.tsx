@@ -1,4 +1,4 @@
-import { Copy, Eye, EyeOff, FileImage, KeyRound, Plus, Trash2 } from "lucide-react";
+import { Copy, Eye, EyeOff, FileImage, KeyRound, Plus, ShieldCheck, Trash2 } from "lucide-react";
 import { useState } from "react";
 import { getExpiryState } from "../../lib/expiry";
 import { copy, type AppLanguage } from "../../lib/i18n";
@@ -31,12 +31,12 @@ export function VaultSection({
       <div className="relative mb-4 flex items-center justify-between gap-3">
         <div>
           <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-arkane-brass">{meta.eyebrow}</p>
-          <h2 className="font-serif text-2xl text-arkane-text">{meta.title}</h2>
+          <h2 className="font-serif text-3xl text-arkane-text sm:text-2xl">{meta.title}</h2>
         </div>
         <button
           type="button"
           onClick={onAdd}
-          className="tap-target inline-flex items-center gap-2 rounded-xl bg-arkane-amber px-4 font-semibold text-black shadow-amber transition-transform duration-150 ease-arkane active:scale-[0.96]"
+          className="tap-target interactive-surface inline-flex items-center gap-2 rounded-xl bg-arkane-amber px-4 font-semibold text-black shadow-amber active:scale-[0.96]"
         >
           <Plus className="h-4 w-4" />
           {t.add}
@@ -50,10 +50,27 @@ export function VaultSection({
           ))}
         </div>
       ) : (
-        <div className="surface-grid relative rounded-[1.25rem] bg-black/20 p-8 text-center shadow-inset ring-1 ring-arkane-line">
-          <KeyRound className="mx-auto mb-3 h-8 w-8 text-arkane-faint" />
-          <p className="font-serif text-xl text-arkane-text">{t.emptyTitle}</p>
-          <p className="mt-1 text-sm text-arkane-muted">{t.emptyBody}</p>
+        <div className="surface-grid relative grid min-h-[360px] overflow-hidden rounded-[1.35rem] bg-black/20 p-6 shadow-inset ring-1 ring-arkane-line sm:grid-cols-[minmax(0,1fr)_220px] sm:p-8 lg:min-h-[500px]">
+          <div className="relative z-10 flex max-w-xl flex-col justify-start pt-8 sm:justify-center sm:pt-0">
+            <div className="mb-5 grid h-14 w-14 place-items-center rounded-2xl bg-arkane-amber/12 text-arkane-amber ring-1 ring-arkane-amber/25">
+              <KeyRound className="h-7 w-7" />
+            </div>
+            <p className="font-serif text-3xl text-arkane-text">{t.emptyTitle}</p>
+            <p className="mt-2 max-w-md text-pretty text-base leading-7 text-arkane-muted">{t.emptyBody}</p>
+            <button
+              type="button"
+              onClick={onAdd}
+              className="tap-target interactive-surface mt-6 inline-flex w-fit items-center gap-2 rounded-xl bg-arkane-green px-5 font-semibold text-black shadow-amber active:scale-[0.96]"
+            >
+              <Plus className="h-4 w-4" />
+              {t.add}
+            </button>
+          </div>
+          <div className="pointer-events-none absolute -right-8 bottom-2 hidden h-64 w-64 place-items-center rounded-[2.5rem] border border-arkane-lineStrong bg-white/[0.025] sm:grid">
+            <div className="grid h-40 w-40 place-items-center rounded-[2rem] bg-black/[0.22] ring-1 ring-arkane-line">
+              <ShieldCheck className="h-20 w-20 text-arkane-green/55" />
+            </div>
+          </div>
         </div>
       )}
     </section>
@@ -83,7 +100,7 @@ function VaultItemCard({
   }
 
   return (
-    <article className="rounded-[1.25rem] bg-white/[0.04] p-4 shadow-inset ring-1 ring-arkane-line">
+    <article className="interactive-surface rounded-[1.25rem] bg-white/[0.045] p-4 shadow-inset ring-1 ring-arkane-line [@media(hover:hover)]:hover:bg-white/[0.06]">
       <div className="mb-4 flex items-start justify-between gap-3">
         <div className="min-w-0">
           <h3 className="truncate font-serif text-xl text-arkane-text">{item.title}</h3>
@@ -93,7 +110,7 @@ function VaultItemCard({
           type="button"
           onClick={confirmDelete}
           aria-label={`${t.deleteAria} ${item.title}`}
-          className="tap-target grid shrink-0 place-items-center rounded-xl text-arkane-faint transition-[transform,background-color,color] duration-150 ease-arkane active:scale-[0.96] [@media(hover:hover)]:hover:bg-arkane-red/10 [@media(hover:hover)]:hover:text-red-100"
+          className="tap-target interactive-surface grid shrink-0 place-items-center rounded-xl text-arkane-faint active:scale-[0.96] [@media(hover:hover)]:hover:bg-arkane-red/10 [@media(hover:hover)]:hover:text-red-100"
         >
           <Trash2 className="h-4 w-4" />
         </button>
@@ -112,7 +129,7 @@ function VaultItemCard({
                       type="button"
                       onClick={() => setRevealed((current) => ({ ...current, [field.id]: !visible }))}
                       aria-label={`${visible ? t.hideAria : t.revealAria} ${field.label}`}
-                      className="tap-target grid h-9 min-h-9 w-9 min-w-9 place-items-center rounded-lg text-arkane-muted transition-[transform,background-color,color] duration-150 ease-arkane active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.06] [@media(hover:hover)]:hover:text-arkane-text"
+                      className="tap-target interactive-surface grid h-9 min-h-9 w-9 min-w-9 place-items-center rounded-lg text-arkane-muted active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.06] [@media(hover:hover)]:hover:text-arkane-text"
                     >
                       {visible ? <EyeOff className="h-4 w-4" /> : <Eye className="h-4 w-4" />}
                     </button>
@@ -122,7 +139,7 @@ function VaultItemCard({
                       type="button"
                       onClick={() => onCopy(field.value, field.label)}
                       aria-label={`${t.copyAria} ${field.label}`}
-                      className="tap-target grid h-9 min-h-9 w-9 min-w-9 place-items-center rounded-lg text-arkane-muted transition-[transform,background-color,color] duration-150 ease-arkane active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.06] [@media(hover:hover)]:hover:text-arkane-text"
+                      className="tap-target interactive-surface grid h-9 min-h-9 w-9 min-w-9 place-items-center rounded-lg text-arkane-muted active:scale-[0.96] [@media(hover:hover)]:hover:bg-white/[0.06] [@media(hover:hover)]:hover:text-arkane-text"
                     >
                       <Copy className="h-4 w-4" />
                     </button>

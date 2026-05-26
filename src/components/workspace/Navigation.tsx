@@ -12,8 +12,8 @@ export function SideRail({
   onSelect: (category: VaultCategory) => void;
 }) {
   return (
-    <nav className="hidden w-[96px] shrink-0 border-r border-white/[0.06] bg-black/25 px-3 py-[calc(env(safe-area-inset-top)+18px)] lg:block">
-      <div className="flex flex-col gap-3">
+    <nav className="hidden w-[104px] shrink-0 border-r border-white/[0.06] bg-black/30 px-3 py-[calc(env(safe-area-inset-top)+18px)] shadow-[18px_0_50px_oklch(0%_0_0_/_0.18)] lg:block">
+      <div className="vault-plate flex min-h-full flex-col gap-3 rounded-[1.45rem] bg-white/[0.025] p-2 shadow-inset ring-1 ring-arkane-line">
         {CATEGORIES.map((category) => {
           const Icon = category.icon;
           const active = activeCategory === category.id;
@@ -25,7 +25,7 @@ export function SideRail({
               aria-label={labels[category.id].nav}
               aria-current={active ? "page" : undefined}
               className={cn(
-                "tap-target group grid h-16 place-items-center rounded-2xl shadow-inset transition-[transform,background-color,color,box-shadow] duration-150 ease-arkane active:scale-[0.96]",
+                "tap-target interactive-surface group grid h-16 place-items-center rounded-2xl shadow-inset active:scale-[0.96]",
                 active
                   ? "bg-arkane-amber text-black shadow-amber"
                   : "bg-white/[0.035] text-arkane-muted ring-1 ring-arkane-line [@media(hover:hover)]:hover:bg-white/[0.075] [@media(hover:hover)]:hover:text-arkane-text"
@@ -51,8 +51,8 @@ export function BottomNav({
   onSelect: (category: VaultCategory) => void;
 }) {
   return (
-    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-white/[0.08] bg-arkane-canvas/97 px-2 pb-[calc(env(safe-area-inset-bottom)+8px)] pt-2 shadow-[0_-18px_38px_oklch(0%_0_0_/_0.32)] lg:hidden">
-      <div className="mx-auto grid max-w-lg grid-cols-4 gap-1">
+    <nav className="fixed inset-x-0 bottom-0 z-40 border-t border-white/[0.08] bg-arkane-canvas/95 px-2 pb-[calc(env(safe-area-inset-bottom)+8px)] pt-2 shadow-[0_-18px_38px_oklch(0%_0_0_/_0.32)] backdrop-blur-xl lg:hidden">
+      <div className="mx-auto grid max-w-lg grid-cols-4 gap-1 rounded-[1.35rem] bg-white/[0.035] p-1 shadow-inset ring-1 ring-arkane-line">
         {CATEGORIES.map((category) => {
           const Icon = category.icon;
           const active = activeCategory === category.id;
@@ -62,8 +62,8 @@ export function BottomNav({
               type="button"
               onClick={() => onSelect(category.id)}
               className={cn(
-                "tap-target flex min-h-[58px] flex-col items-center justify-center gap-1 rounded-2xl text-[11px] transition-[transform,background-color,color] duration-150 ease-arkane active:scale-[0.96]",
-                active ? "bg-arkane-amber text-black shadow-amber" : "text-arkane-muted"
+                "tap-target interactive-surface flex min-h-[58px] flex-col items-center justify-center gap-1 rounded-2xl text-[11px] active:scale-[0.96]",
+                active ? "bg-arkane-amber text-black shadow-amber" : "text-arkane-muted [@media(hover:hover)]:hover:bg-white/[0.06]"
               )}
               aria-current={active ? "page" : undefined}
             >

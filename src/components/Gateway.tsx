@@ -1,5 +1,5 @@
 import { FormEvent, useState } from "react";
-import { Fingerprint, GitBranch as Github, KeyRound, LockKeyhole, ShieldAlert, ShieldCheck } from "lucide-react";
+import { ArrowRight, CheckCircle2, Fingerprint, GitBranch as Github, KeyRound, LockKeyhole, ShieldAlert } from "lucide-react";
 import type { MasterUnlockInput } from "../hooks/useVaultEngine";
 import { copy, type AppLanguage, localizeError } from "../lib/i18n";
 import type { GitHubConnection } from "../types";
@@ -77,63 +77,69 @@ export function Gateway({
       id="main-content"
       className="app-scroll scroll-fade h-full overflow-y-auto px-4 pb-8 pt-[calc(env(safe-area-inset-top)+14px)] sm:px-6 lg:px-8"
     >
-      <section className="mx-auto flex min-h-full w-full max-w-6xl flex-col justify-center gap-5 py-4 lg:grid lg:grid-cols-[minmax(0,0.92fr)_minmax(420px,1.08fr)] lg:items-center lg:gap-7">
+      <section className="relative mx-auto flex min-h-full w-full max-w-[1360px] flex-col gap-5 py-4 lg:grid lg:grid-cols-[minmax(0,1.05fr)_minmax(420px,0.78fr)] lg:items-stretch lg:gap-5">
         <div className="flex items-center justify-between gap-3 lg:col-span-2">
           <div className="flex items-center gap-3">
-            <LogoMark className="h-10 w-10 rounded-2xl" />
+            <LogoMark className="h-12 w-12 rounded-[1.15rem]" />
             <div>
               <p className="font-mono text-[11px] uppercase tracking-[0.18em] text-arkane-green">{t.eyebrow}</p>
-              <h1 className="font-serif text-xl font-semibold text-arkane-text">{t.title}</h1>
+              <h1 className="font-serif text-3xl text-arkane-text sm:text-4xl">{t.title}</h1>
             </div>
           </div>
           <LanguageToggle language={language} labels={languageLabels} onToggle={onToggleLanguage} />
         </div>
 
-        <div className="space-y-5">
-          <div className="vault-plate rounded-[1.75rem] bg-arkane-deck/88 p-5 shadow-glow ring-1 ring-arkane-line sm:p-6">
-            <div className="relative space-y-5">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <p className="text-balance font-serif text-3xl font-semibold leading-[1.04] text-arkane-text sm:text-5xl">
-                    {t.tagline}
-                  </p>
-                  <p className="mt-4 max-w-xl text-pretty text-sm leading-6 text-arkane-muted sm:text-base">{t.proof}</p>
-                </div>
-                <div className="hidden h-16 w-16 shrink-0 place-items-center rounded-[1.25rem] bg-black/25 text-arkane-amber shadow-inset ring-1 ring-arkane-line sm:grid">
-                  <ShieldCheck className="h-8 w-8" strokeWidth={1.6} />
-                </div>
+        <div className="hero-ambient vault-plate min-h-[560px] rounded-[2rem] p-5 shadow-glow ring-1 ring-arkane-line sm:p-7 lg:min-h-0 lg:p-9">
+          <div className="relative flex h-full flex-col justify-between gap-8">
+            <div className="relative z-10 max-w-4xl">
+              <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-arkane-brass/20 bg-black/25 px-3 py-2 text-xs text-arkane-muted shadow-inset">
+                <CheckCircle2 className="h-4 w-4 text-arkane-green" />
+                <span>{syncMessage}</span>
               </div>
-
-              <div className="grid gap-2 sm:grid-cols-3">
-                {t.signals.map((signal) => (
-                  <div key={signal.value} className="rounded-2xl bg-white/[0.04] p-3 shadow-inset ring-1 ring-white/[0.065]">
-                    <span className="block font-mono text-xs font-semibold uppercase tracking-[0.12em] text-arkane-amber">
-                      {signal.value}
-                    </span>
-                    <span className="text-sm text-arkane-muted">{signal.label}</span>
-                  </div>
+              <p className="hero-title text-balance font-serif text-arkane-text" aria-label={t.tagline}>
+                {t.taglineLines.map((line) => (
+                  <span key={line} className="block">
+                    {line}
+                  </span>
                 ))}
-              </div>
+              </p>
+              <p className="mt-6 max-w-2xl text-pretty text-lg leading-8 text-arkane-muted sm:text-xl">{t.proof}</p>
             </div>
-          </div>
 
-          {storedConnection ? (
-            <div className="rounded-2xl bg-white/[0.035] p-4 shadow-inset ring-1 ring-arkane-line">
-              <div className="flex items-center gap-3 text-sm text-arkane-muted">
-                <Github className="h-5 w-5 shrink-0 text-arkane-green" />
-                <span className="min-w-0 truncate">
-                  {storedConnection.repo} · {t.storedToken}
-                </span>
-              </div>
+            <div className="relative z-10 grid gap-3 sm:grid-cols-3">
+              {t.signals.map((signal) => (
+                <div
+                  key={signal.value}
+                  className="interactive-surface rounded-[1.35rem] border border-white/[0.07] bg-black/[0.24] p-4 shadow-inset"
+                >
+                  <span className="block font-mono text-xs font-semibold uppercase tracking-[0.14em] text-arkane-amber">
+                    {signal.value}
+                  </span>
+                  <span className="mt-1 block text-base text-arkane-muted">{signal.label}</span>
+                </div>
+              ))}
             </div>
-          ) : (
-            <p className="max-w-xl text-pretty text-sm leading-6 text-arkane-faint">{t.securityNote}</p>
-          )}
+
+            <VaultSigil />
+
+            {storedConnection ? (
+              <div className="relative z-10 rounded-2xl bg-black/[0.24] p-4 shadow-inset ring-1 ring-arkane-line">
+                <div className="flex items-center gap-3 text-sm text-arkane-muted">
+                  <Github className="h-5 w-5 shrink-0 text-arkane-green" />
+                  <span className="min-w-0 truncate">
+                    {storedConnection.repo} · {t.storedToken}
+                  </span>
+                </div>
+              </div>
+            ) : (
+              <p className="relative z-10 max-w-2xl text-pretty text-sm leading-6 text-arkane-faint">{t.securityNote}</p>
+            )}
+          </div>
         </div>
 
-        <div className="rounded-[1.75rem] bg-arkane-deck/95 p-3 shadow-glow ring-1 ring-arkane-line sm:p-4">
+        <div className="vault-plate rounded-[2rem] bg-arkane-deck/95 p-3 shadow-glow ring-1 ring-arkane-line sm:p-4 lg:self-start">
           {hasQuickPin && storedConnection ? (
-            <form onSubmit={submitPin} className="mb-3 rounded-[1.25rem] bg-white/[0.04] p-4 shadow-inset ring-1 ring-white/[0.07]">
+            <form onSubmit={submitPin} className="relative mb-3 rounded-[1.35rem] bg-white/[0.045] p-4 shadow-inset ring-1 ring-white/[0.07]">
               <div className="mb-3 flex items-start gap-3">
                 <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-arkane-amber/12 text-arkane-amber ring-1 ring-arkane-amber/20">
                   <Fingerprint className="h-5 w-5" />
@@ -159,7 +165,7 @@ export function Gateway({
                 <button
                   type="submit"
                   disabled={busy || pinUnlock.length !== 6}
-                  className="tap-target inline-flex justify-center rounded-xl bg-arkane-amber px-4 font-semibold text-black shadow-amber transition-[transform,opacity] duration-150 ease-arkane active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
+                  className="tap-target interactive-surface inline-flex justify-center rounded-xl bg-arkane-amber px-4 font-semibold text-black shadow-amber active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
                 >
                   {t.quickPinSubmit}
                 </button>
@@ -167,14 +173,14 @@ export function Gateway({
             </form>
           ) : null}
 
-          <form onSubmit={submitMaster} className="rounded-[1.25rem] bg-black/[0.16] p-4 ring-1 ring-white/[0.055]">
+          <form onSubmit={submitMaster} className="relative rounded-[1.45rem] bg-black/[0.2] p-4 ring-1 ring-white/[0.065] sm:p-5">
             <div className="mb-4 flex items-start gap-3">
-              <div className="grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-arkane-green/12 text-arkane-green ring-1 ring-arkane-green/20">
+              <div className="grid h-11 w-11 shrink-0 place-items-center rounded-2xl bg-arkane-green/12 text-arkane-green ring-1 ring-arkane-green/20">
                 <LockKeyhole className="h-5 w-5" />
               </div>
               <div>
-                <h2 className="font-serif text-xl text-arkane-text">{t.masterTitle}</h2>
-                <p className="text-sm leading-5 text-arkane-muted">{t.masterHelp}</p>
+                <h2 className="font-serif text-3xl text-arkane-text">{t.masterTitle}</h2>
+                <p className="mt-1 text-sm leading-5 text-arkane-muted">{t.masterHelp}</p>
               </div>
             </div>
 
@@ -248,15 +254,45 @@ export function Gateway({
               <button
                 type="submit"
                 disabled={busy}
-                className="tap-target inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-arkane-green px-5 font-semibold text-black shadow-amber transition-[transform,opacity] duration-150 ease-arkane active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
+                className="tap-target interactive-surface inline-flex shrink-0 items-center justify-center gap-2 rounded-xl bg-arkane-green px-5 font-semibold text-black shadow-amber active:scale-[0.96] disabled:cursor-not-allowed disabled:opacity-50"
               >
                 <KeyRound className="h-4 w-4" />
                 {t.openVault}
+                <ArrowRight className="h-4 w-4" />
               </button>
             </div>
           </form>
         </div>
       </section>
     </main>
+  );
+}
+
+function VaultSigil() {
+  return (
+    <div className="pointer-events-none absolute right-8 top-20 z-0 hidden w-[30%] max-w-[300px] opacity-35 lg:block" aria-hidden="true">
+      <svg viewBox="0 0 360 360" className="vault-sigil h-full w-full">
+        <circle cx="180" cy="180" r="134" fill="none" stroke="oklch(78% 0.13 82 / 0.22)" strokeWidth="1.5" />
+        <circle cx="180" cy="180" r="98" fill="none" stroke="oklch(74% 0.13 155 / 0.22)" strokeWidth="1.5" />
+        <path d="M180 54 289 102v84c0 78-41 130-109 160C112 316 71 264 71 186v-84L180 54Z" fill="oklch(8% 0.014 135 / 0.56)" stroke="oklch(78% 0.13 82 / 0.62)" strokeWidth="5" />
+        <path d="M143 180 170 207 221 139" fill="none" stroke="oklch(92% 0.05 92 / 0.92)" strokeWidth="14" strokeLinecap="round" strokeLinejoin="round" />
+        {Array.from({ length: 36 }, (_, index) => {
+          const angle = index * 10;
+          const long = index % 3 === 0;
+          return (
+            <line
+              key={angle}
+              x1="180"
+              y1={long ? "20" : "30"}
+              x2="180"
+              y2="38"
+              stroke={long ? "oklch(78% 0.13 82 / 0.48)" : "oklch(100% 0 0 / 0.17)"}
+              strokeWidth={long ? "2" : "1"}
+              transform={`rotate(${angle} 180 180)`}
+            />
+          );
+        })}
+      </svg>
+    </div>
   );
 }
